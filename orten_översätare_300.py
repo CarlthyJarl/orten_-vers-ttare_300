@@ -35,21 +35,13 @@ def convert_sentences_to_list():
 def make_list_better(sentence_list : list(), word_list : list()):
     new_word_list = []
     new_sentence_list = []
-    new_new_word_list = []
-    new_new_sentence_list = []
 
     for i in word_list:
-        new_word_list.append(str(i).strip("\n"))
+        new_word_list.append(str(i).strip("\n").lower())
     for i in sentence_list:
-        new_sentence_list.append(str(i).strip("\n"))
+        new_sentence_list.append(str(i).strip("\n").lower())
         
-    for i in new_word_list:
-        new_new_word_list.append(str(i).lower())
-    for i in new_sentence_list:
-        new_new_sentence_list.append(str(i).lower())
-    # print(new_word_list)
-    # print(new_sentence_list)
-    return new_new_word_list, new_new_sentence_list
+    return new_word_list, new_sentence_list
 
 
 def convert_svenne_words_to_list():
