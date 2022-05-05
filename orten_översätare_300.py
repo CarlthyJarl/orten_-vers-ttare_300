@@ -6,7 +6,7 @@ class GoodOrBad: #Jag kom på att jag har glömt hur klasseer fungerar
         self.good = good
         self.bad = bad
         
-class Meaning:
+class Emotion:
     pass
 
 #Funktioner
@@ -83,3 +83,6 @@ if __name__ == "__main__":
 #Skriv in dessa i listan med / 
 
 #Har alternativa översätningar i svenne ord lista
+#Kom ihåg plural form 
+
+#Aanvänd klasser för att hitta känsla eller ton i meningen
