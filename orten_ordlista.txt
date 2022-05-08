@@ -46,8 +46,8 @@ ish
 lallish
 lax
 ortenbarn
-paraflow
-paraknas
+flow
+knas/knaz
 jara
 mannen
 benäät
