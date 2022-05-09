@@ -72,16 +72,16 @@ def translate(sentence : int):
         word_index = -1
         sentence_list = list(sentence.split(" "))
 
-        abo = 0
-
         for word in sentence_list:
             word_index += 1
             orten_index = -1
             for item in orten_word_list:
                 orten_index += 1
-                if word in item:
-                    sentence_list[word_index] = svenne_word_list[orten_index] #denna är wack
-                    abo += 1
+                if word == item:
+                    sentence_list[word_index] = svenne_word_list[orten_index] 
+
+                elif word in item and "/" in item:
+                    sentence_list[word_index] = svenne_word_list[orten_index]
 
         print(sentence_list)
 

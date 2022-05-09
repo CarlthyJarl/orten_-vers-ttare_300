@@ -1,4 +1,4 @@
-aboow
+aboow/abo/abow
 shuno
 shuna
 gitta
@@ -6,7 +6,7 @@ gäris
 katt
 baelesh
 para
-jalla
+jallah
 hajde/ajde
 keff
 aina
@@ -61,3 +61,4 @@ suedi
 woria
 zip-zap
 pallar
+japp
