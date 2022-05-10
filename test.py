@@ -1,13 +1,10 @@
-l = ["jänni/jenni", "loral"]
-jänni = "jänni"
-ord = "ord"
 
-l[1] = "abo"
+vowels = ["a", "e", "i", "o", "u"]
+sentence = "aaexioummmdidd"
 
-for i in l:
-    if jänni in i:
-        print(ord)
+number_of_vowels = 0
+for i in vowels:
+    number_of_vowels += sentence.count(i)
 
 
-
-print(l)
+print(number_of_vowels)

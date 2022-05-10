@@ -1,6 +1,8 @@
 herregud
 kille/snubbe
+killen/snubben
 tjej/kvinna
+tjejen/kvinnan
 sticka
 brudar/tjejer
 snygg
@@ -9,7 +11,7 @@ pengar
 skynda
 kom igen/skynda dig
 dålig/ful
-polisen/polis
+polisen
 alltså/liksom/typ
 uppfattat
 kompis

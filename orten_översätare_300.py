@@ -1,16 +1,16 @@
 #imports
-#Klasser
+#Classes
 
-class GoodOrBad: #Jag kom på att jag har glömt hur klasseer fungerar
-    def __init__(self, good, bad):
-        self.good = good
-        self.bad = bad
+class Responce: #Jag kom på att jag har glömt hur klasseer fungerar
+    pass
         
 class Emotion:
     pass
 
 class Gramor: #Vokaler consonanter n shit
-    pass
+    def __init__(self, vowels, consonants):
+        self.vowels =  vowels
+        self.consonants = consonants
 
 #Funktioner
 """
@@ -19,6 +19,13 @@ Ha med en docstring som förklarar complexa saker
 https://www.swedishnomad.com/sv/orten-slang/ 
 https://www.gp.se/nyheter/sverige/35-ord-som-bara-%C3%A4kta-ortenbarn-f%C3%B6rst%C3%A5r-1.2586616
 """
+# def difrent_letters():
+#     vowels = ["a", "e", "i", "o", "u"]
+#     consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+#     # letters = Gramor(["a", "e", "i", "o", "u"], ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"])
+#     return_letters = Gramor(vowels, consonants)
+#     return return_letters
+
 def convert_orten_word_to_list():
     all_orten_words = []
     with open("orten_ordlista.txt", "r", encoding="utf8") as word:
@@ -43,12 +50,33 @@ def convert_svenne_sentences_to_list():
         all_svenne_meningar = mening.readlines()
     return all_svenne_meningar
 
-
 def make_list_better(any_words_or_sentenses_list : list()):
     new_any_words_or_sentenses_list = []
     for item in any_words_or_sentenses_list:
         new_any_words_or_sentenses_list.append(str(item).strip("\n").lower()) #lower fungerar inte om det inte står str typ
     return new_any_words_or_sentenses_list
+
+def make_list_sentence(sentence_list):
+    sentence = " "
+    return sentence.join(sentence_list)
+
+def find_vowel(sentence : int):
+    number_of_vowels = 0
+    vowels = ["a", "e", "i", "o", "u"]
+    for i in vowels[0]: #knas
+        number_of_vowels += sentence.count(i)
+    return number_of_vowels
+
+def find_consonant(sentence : int):
+    number_of_consonants = 0
+    consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+    for i in consonants:
+        number_of_consonants += sentence.count(i)
+    return number_of_consonants
+
+
+
+
 
 
 def translate(sentence : int):
@@ -82,16 +110,47 @@ def translate(sentence : int):
 
                 elif word in item and "/" in item:
                     sentence_list[word_index] = svenne_word_list[orten_index]
+        
+        new_sentence_list = []
+        alternate_translation = False
+        for word in sentence_list:
+            if "/" in word:
+                difrent_words = word.split("/")
+                new_sentence_list.append(difrent_words[0])
+                alternate_translation = True
+                
+            else:
+                new_sentence_list.append(word)
+        new_new_sentence_list = make_list_sentence(new_sentence_list)
+        print(new_new_sentence_list)
+        if alternate_translation == True:
+            print(f"Alternate translation(s) {make_list_sentence(sentence_list)}")
+        print(f"number of vowels: {find_vowel(new_new_sentence_list)}")
+        print(f"number of consonants: {find_consonant(new_new_sentence_list)}")
 
-        print(sentence_list)
+
+                
+
+
+        # words = sentence_list.index(difrent_words)
+
+        # sentence_index = -1 #allt under är abo knas
+        # for word in sentence_list:
+        #     if "/" in word:
+        #         #sentence_index += 1
+        #         difrent_words = word.split("/")
+        #         for num in len(difrent_words):
+        #             word = word.replace(word, difrent_words[num])
+        #             sentence_list.append(word)
+        #             print(sentence_list)
+
+        # print(sentence_list)
 
 
 
     #for word in sentence_list:
         #for equel in svenne 
         #if word ==
-
-
 
 
 
@@ -108,8 +167,6 @@ def main():
         if choise == 1:
             print("Whrite your sentence")
             sentence = input("- ")
-            #print(orten_word_list)
-            #print(orten_senctence_list)
             translate(sentence)
 
         elif choise == 2:
@@ -122,17 +179,6 @@ def main():
 if __name__ == "__main__":
     main()
 
-#Kom ihåg att converta till lower case
-#Sen ta bort alla svenska ord och ändra till English
-#Böjningar shono/shonon blir kille/killen
-# shona/shonan blir tjej/tjejen
-# katt/kattig blir snygg/snygg
-
-#Skriv in dessa i listan med / 
-
-#Har alternativa översätningar i svenne ord lista
-#Kom ihåg plural form 
 
 #Aanvänd klasser för att hitta känsla eller ton i meningen
 
-#läg till mer orten ord
