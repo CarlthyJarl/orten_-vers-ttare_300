@@ -1,13 +1,13 @@
 #imports
 #Classes
 
-class Responce: #Jag kom på att jag har glömt hur klasseer fungerar
+class Responce: #Dessa är ej kara bara en idee än så länge
     pass
         
 class Emotion:
     pass
 
-class Gramor: #Vokaler consonanter n shit
+class Grammer: 
     def __init__(self, vowels, consonants):
         self.vowels =  vowels
         self.consonants = consonants
@@ -19,12 +19,7 @@ Ha med en docstring som förklarar complexa saker
 https://www.swedishnomad.com/sv/orten-slang/ 
 https://www.gp.se/nyheter/sverige/35-ord-som-bara-%C3%A4kta-ortenbarn-f%C3%B6rst%C3%A5r-1.2586616
 """
-# def difrent_letters():
-#     vowels = ["a", "e", "i", "o", "u"]
-#     consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
-#     # letters = Gramor(["a", "e", "i", "o", "u"], ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"])
-#     return_letters = Gramor(vowels, consonants)
-#     return return_letters
+
 
 def convert_orten_word_to_list():
     all_orten_words = []
@@ -53,17 +48,18 @@ def convert_svenne_sentences_to_list():
 def make_list_better(any_words_or_sentenses_list : list()):
     new_any_words_or_sentenses_list = []
     for item in any_words_or_sentenses_list:
-        new_any_words_or_sentenses_list.append(str(item).strip("\n").lower()) #lower fungerar inte om det inte står str typ
-    return new_any_words_or_sentenses_list
+        new_any_words_or_sentenses_list.append(str(item).strip("\n").lower()) #lower only works when it says str for som reason
+    return new_any_words_or_sentenses_list 
+    #returns a more useble string
 
-def make_list_sentence(sentence_list):
+def make_list_sentence(sentence_list): #or make list string
     sentence = " "
     return sentence.join(sentence_list)
 
 def find_vowel(sentence : int):
     number_of_vowels = 0
     vowels = ["a", "e", "i", "o", "u"]
-    for i in vowels[0]: #knas
+    for i in vowels:
         number_of_vowels += sentence.count(i)
     return number_of_vowels
 
@@ -74,18 +70,18 @@ def find_consonant(sentence : int):
         number_of_consonants += sentence.count(i)
     return number_of_consonants
 
+def translate(sentence : int): #Dockstrings sumerar funktionen
+    """_summary_
 
-
-
-
-
-def translate(sentence : int):
+    Args:
+        sentence (int): _description_
+    """
     orten_word_list = make_list_better(convert_orten_word_to_list())
     orten_sentence_list = make_list_better(convert_orten_sentences_to_list())
     svenne_word_list = make_list_better(convert_svenne_word_to_list())
     svenne_sentence_list = make_list_better(convert_svenne_sentences_to_list())
 
-    sentence_index = -1
+    sentence_index = -1 
     is_sentence = False
     sentence = sentence.lower()
 
@@ -162,17 +158,18 @@ def main():
     while True: 
         print("Wellcome to main.")
         print('Press 1 for "Orten Translator" Press 2 for "Svenne Translator" Press 3 to end the program.')
-        choise = int(input("- "))
+        choise = (input("- "))
 
-        if choise == 1:
-            print("Whrite your sentence")
+        if choise == "1":
+            print("Write your sentence")
             sentence = input("- ")
             translate(sentence)
+            print("\n")
 
-        elif choise == 2:
+        elif choise == "2":
             print("comming soon")
 
-        elif choise == 3:
+        elif choise == "3":
             break
 
 
