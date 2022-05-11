@@ -63,4 +63,6 @@ suedi
 woria
 zip-zap
 pallar
-japp
+japp/jappa
+yani
+e
