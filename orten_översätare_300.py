@@ -1,98 +1,92 @@
-#imports
-#Classes
-
-class Responce: #Dessa är ej kara bara en idee än så länge
+# Imports
+# Classes
+class Responce: # In development
     pass
         
-class Emotion:
+class Emotion: # In development
     pass
 
-class Grammer: 
-    def __init__(self, vowels, consonants):
-        self.vowels =  vowels
-        self.consonants = consonants
-
-#Funktioner
-"""
-Ha med en docstring som förklarar complexa saker 
-
-https://www.swedishnomad.com/sv/orten-slang/ 
-https://www.gp.se/nyheter/sverige/35-ord-som-bara-%C3%A4kta-ortenbarn-f%C3%B6rst%C3%A5r-1.2586616
-"""
-
-
+# Funktions
 def convert_orten_word_to_list():
     all_orten_words = []
-    with open("orten_ordlista.txt", "r", encoding="utf8") as word:
+    with open("orten_word_list.txt", "r", encoding="utf8") as word:
         all_orten_words = word.readlines()
     return all_orten_words
 
-def convert_svenne_word_to_list():
-    all_svenne_words = []
-    with open("svenne_ordlista.txt", "r", encoding="utf8") as word:
-        all_svenne_words = word.readlines()
-    return all_svenne_words
+def convert_swedish_word_to_list():
+    all_swedish_words = []
+    with open("swedish_word_list.txt", "r", encoding="utf8") as word:
+        all_swedish_words = word.readlines()
+    return all_swedish_words
 
 def convert_orten_sentences_to_list():
     all_orten_meningar = []
-    with open("orten_meninglista.txt", "r", encoding="utf8") as mening:
+    with open("orten_sentence_list.txt", "r", encoding="utf8") as mening:
         all_orten_meningar = mening.readlines()
     return all_orten_meningar
 
-def convert_svenne_sentences_to_list():
-    all_svenne_meningar = []
-    with open("svenne_meningslista.txt", "r", encoding="utf8") as mening:
-        all_svenne_meningar = mening.readlines()
-    return all_svenne_meningar
+def convert_swedish_sentences_to_list():
+    all_swedish_meningar = []
+    with open("svenne_sentence_list.txt", "r", encoding="utf8") as mening:
+        all_swedish_meningar = mening.readlines()
+    return all_swedish_meningar
 
 def make_list_better(any_words_or_sentenses_list : list()):
     new_any_words_or_sentenses_list = []
     for item in any_words_or_sentenses_list:
-        new_any_words_or_sentenses_list.append(str(item).strip("\n").lower()) #lower only works when it says str for som reason
+        new_any_words_or_sentenses_list.append(str(item).strip("\n").lower()) # lower only works when it says str for som reason
     return new_any_words_or_sentenses_list 
-    #returns a more useble string
+    # Returns a more useble string
 
-def make_list_sentence(sentence_list): #or make list string
+def make_list_sentence(sentence_list): # Make list string
     sentence = " "
     return sentence.join(sentence_list)
 
 def find_vowel(sentence : int):
     number_of_vowels = 0
     vowels = ["a", "e", "i", "o", "u"]
-    for i in vowels:
-        number_of_vowels += sentence.count(i)
+    for letter in vowels:
+        number_of_vowels += sentence.count(letter)
     return number_of_vowels
 
 def find_consonant(sentence : int):
     number_of_consonants = 0
     consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
-    for i in consonants:
-        number_of_consonants += sentence.count(i)
+    for letter in consonants:
+        number_of_consonants += sentence.count(letter)
     return number_of_consonants
 
-def translate(sentence : int): #Dockstrings sumerar funktionen
-    """_summary_
+def translate(sentence : str):
+    """skriv
 
     Args:
-        sentence (int): _description_
+        sentence (str): The sentence that the user wrights in main.
+
+    The funkktion starts by taking in all the lists with the translate words. 
+    the first for loop cheacks if the senteance can be translated direktly. 
+    otherwise it gowes on to translate the words. 
+
+
     """
+    # Lists with the translate words and sentenses are defined.
     orten_word_list = make_list_better(convert_orten_word_to_list())
     orten_sentence_list = make_list_better(convert_orten_sentences_to_list())
-    svenne_word_list = make_list_better(convert_svenne_word_to_list())
-    svenne_sentence_list = make_list_better(convert_svenne_sentences_to_list())
+    swedish_word_list = make_list_better(convert_swedish_word_to_list())
+    swedish_sentence_list = make_list_better(convert_swedish_sentences_to_list())
 
     sentence_index = -1 
     is_sentence = False
     sentence = sentence.lower()
 
-    for item in svenne_sentence_list:
+    # Tryes to transklate sentence direktly. 
+    for item in swedish_sentence_list:
         sentence_index += 1
         if item == sentence:
             print(orten_sentence_list[sentence_index])
             is_sentence = True
             break
-        
-    if is_sentence == False:
+    # Translates word for word 
+    if not is_sentence:
         word_index = -1
         sentence_list = list(sentence.split(" "))
 
@@ -102,10 +96,10 @@ def translate(sentence : int): #Dockstrings sumerar funktionen
             for item in orten_word_list:
                 orten_index += 1
                 if word == item:
-                    sentence_list[word_index] = svenne_word_list[orten_index] 
+                    sentence_list[word_index] = swedish_word_list[orten_index] 
 
                 elif word in item and "/" in item:
-                    sentence_list[word_index] = svenne_word_list[orten_index]
+                    sentence_list[word_index] = swedish_word_list[orten_index]
         
         new_sentence_list = []
         alternate_translation = False
@@ -117,47 +111,21 @@ def translate(sentence : int): #Dockstrings sumerar funktionen
                 
             else:
                 new_sentence_list.append(word)
+        # Makes prosesed list ready to print
         new_new_sentence_list = make_list_sentence(new_sentence_list)
-        print(new_new_sentence_list)
+        print(f"\n{new_new_sentence_list}")
         if alternate_translation == True:
             print(f"Alternate translation(s) {make_list_sentence(sentence_list)}")
         print(f"number of vowels: {find_vowel(new_new_sentence_list)}")
         print(f"number of consonants: {find_consonant(new_new_sentence_list)}")
-
-
-                
-
-
-        # words = sentence_list.index(difrent_words)
-
-        # sentence_index = -1 #allt under är abo knas
-        # for word in sentence_list:
-        #     if "/" in word:
-        #         #sentence_index += 1
-        #         difrent_words = word.split("/")
-        #         for num in len(difrent_words):
-        #             word = word.replace(word, difrent_words[num])
-        #             sentence_list.append(word)
-        #             print(sentence_list)
-
-        # print(sentence_list)
-
-
-
-    #for word in sentence_list:
-        #for equel in svenne 
-        #if word ==
-
-
-
  
 
-#Huvudfunktion 
+# Main Funktion
 def main(): 
 
     while True: 
         print("Wellcome to main.")
-        print('Press 1 for "Orten Translator" Press 2 for "Svenne Translator" Press 3 to end the program.')
+        print('Press 1 for "Orten Translator" Press 2 for " Translator" Press 3 to end the program.')
         choise = (input("- "))
 
         if choise == "1":
@@ -176,6 +144,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-#Aanvänd klasser för att hitta känsla eller ton i meningen
 
